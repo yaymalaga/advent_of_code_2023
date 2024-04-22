@@ -16,23 +16,47 @@ FetchContent_Declare(
 option(INSTALL_GTEST OFF)
 FetchContent_MakeAvailable(googletest)
 
-# Add test files
-set(TEST_FILES
+# Add libraries
+add_library(
+  day_1_utils
+  src/day_1/utils.cpp
+)
+add_library(
+  day_1_calibration_tool
+  src/day_1/calibration_tool.cpp
+)
+target_link_libraries(
+  day_1_calibration_tool
+  day_1_utils
 )
 
-foreach(TEST_FILE ${TEST_FILES})
-  add_executable(
-    ${TEST_FILE}
-    tests/${TEST_FILE}.cpp
-  )
-  target_link_libraries(
-    ${TEST_FILE}
-    GTest::gtest_main
-  )
-endforeach()
+# Add executables
+add_executable(
+  day_1
+  src/day_1/day_1.cpp
+)
+target_link_libraries(
+  day_1
+  day_1_calibration_tool
+)
+
+# Add test files
+add_executable(
+  day_1_tests
+  tests/day_1_tests.cpp
+)
+target_include_directories(
+  day_1_tests
+  PRIVATE src
+)
+target_link_libraries(
+  day_1_tests
+  day_1_calibration_tool
+  GTest::gtest_main
+)
 
 # Copy puzzle inputs
 install(DIRECTORY
-  ${CMAKE_CURRENT_SOURCE_DIR}/data
+  data
   DESTINATION ${CMAKE_CURRENT_BINARY_DIR}
 )
