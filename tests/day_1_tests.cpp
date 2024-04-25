@@ -11,7 +11,7 @@ TEST(Day1Part1, Basic) {
   auto calibration_tool =
       advent_of_code_2023::day_1::calibration_tool::CalibrationTool(data);
 
-  ASSERT_EQ(calibration_tool.getTotalCalibrationValue(), 142);
+  EXPECT_EQ(calibration_tool.getTotalCalibrationValue(), 142);
 }
 
 TEST(Day1Part2, SpelledNumbers) {
@@ -23,11 +23,11 @@ TEST(Day1Part2, SpelledNumbers) {
   auto calibration_tool =
       advent_of_code_2023::day_1::calibration_tool::CalibrationTool(data);
 
-  ASSERT_NE(calibration_tool.getTotalCalibrationValue(), 281);
+  EXPECT_NE(calibration_tool.getTotalCalibrationValue(), 281);
 
   calibration_tool.replaceSpelledNumbers();
 
-  ASSERT_EQ(calibration_tool.getTotalCalibrationValue(), 281);
+  EXPECT_EQ(calibration_tool.getTotalCalibrationValue(), 281);
 }
 
 TEST(Day1Part2, SpelledNumbersRepeated) {
@@ -38,9 +38,9 @@ TEST(Day1Part2, SpelledNumbersRepeated) {
   auto calibration_tool =
       advent_of_code_2023::day_1::calibration_tool::CalibrationTool(data);
 
-  ASSERT_EQ(calibration_tool.getTotalCalibrationValue(), 42);
+  EXPECT_EQ(calibration_tool.getTotalCalibrationValue(), 42);
 
   calibration_tool.replaceSpelledNumbers();
 
-  ASSERT_EQ(calibration_tool.getTotalCalibrationValue(), 49);
+  EXPECT_EQ(calibration_tool.getTotalCalibrationValue(), 49);
 }

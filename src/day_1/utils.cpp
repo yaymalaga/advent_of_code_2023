@@ -6,19 +6,6 @@ namespace advent_of_code_2023 {
 namespace day_1 {
 namespace utils {
 
-std::vector<std::string> parseInput(const std::string& data_file) {
-  std::ifstream input(data_file);
-  std::string line;
-  std::vector<std::string> data;
-
-  while (std::getline(input, line)) {
-    data.push_back(line);
-  }
-  input.close();
-
-  return data;
-}
-
 int64_t charToInt(char character) {
   return static_cast<int64_t>(character - '0');
 }

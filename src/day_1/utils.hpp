@@ -24,13 +24,6 @@ int64_t charToInt(char character);
 char intToChar(int64_t digit);
 
 /*
-  @brief Parses the input file and returns a vector of strings
-  @param file_path The path to the input file
-  @return A vector of strings
-  */
-std::vector<std::string> parseInput(const std::string& file_path);
-
-/*
 @brief Replaces all spelled numbers by their actual digits
 @param item The string to process
 */

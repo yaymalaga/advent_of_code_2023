@@ -14,7 +14,7 @@ class CalibrationTool {
   @brief Constructor
   @param data The list of strings to process
   */
-  CalibrationTool(std::vector<std::string>& data);
+  CalibrationTool(const std::vector<std::string>& data);
 
   /*
   @brief Constructor
@@ -28,7 +28,7 @@ class CalibrationTool {
   @brief Iterates through the data and calculates each calibration value
   @return The total calibration value
   */
-  int64_t getTotalCalibrationValue();
+  int64_t getTotalCalibrationValue() const;
 
   /*
   @brief Replaces all spelled numbers of the data by their actual digits
@@ -47,7 +47,7 @@ class CalibrationTool {
   digit found
   @return The calibration value obtained
   */
-  int64_t getCalibrationValue(const std::string& item);
+  static int64_t getCalibrationValue(const std::string& item);
 };
 
 }  // namespace calibration_tool

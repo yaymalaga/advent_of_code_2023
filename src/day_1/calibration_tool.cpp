@@ -4,18 +4,18 @@
 #include <regex>
 
 #include "calibration_tool.hpp"
+#include "common/utils.hpp"
 #include "utils.hpp"
 
 namespace advent_of_code_2023 {
 namespace day_1 {
 namespace calibration_tool {
 
-CalibrationTool::CalibrationTool(std::vector<std::string>& data)
+CalibrationTool::CalibrationTool(const std::vector<std::string>& data)
     : data_(std::move(data)) {}
 
-CalibrationTool::CalibrationTool(const std::string& data_path) {
-  data_ = utils::parseInput(data_path);
-}
+CalibrationTool::CalibrationTool(const std::string& data_path)
+    : CalibrationTool(common::utils::readInput(data_path)) {}
 
 int64_t CalibrationTool::getCalibrationValue(const std::string& item) {
   std::optional<char> first;
@@ -52,7 +52,7 @@ int64_t CalibrationTool::getCalibrationValue(const std::string& item) {
   return utils::charToInt(first.value()) * 10 + utils::charToInt(last.value());
 }
 
-int64_t CalibrationTool::getTotalCalibrationValue() {
+int64_t CalibrationTool::getTotalCalibrationValue() const {
   // Just iterates through every item and sums up the values
   int64_t total = 0;
 

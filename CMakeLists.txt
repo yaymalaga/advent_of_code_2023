@@ -18,6 +18,11 @@ FetchContent_MakeAvailable(googletest)
 
 # Add libraries
 add_library(
+  common_utils
+  src/common/utils.cpp
+)
+
+add_library(
   day_1_utils
   src/day_1/utils.cpp
 )
@@ -25,9 +30,49 @@ add_library(
   day_1_calibration_tool
   src/day_1/calibration_tool.cpp
 )
+target_include_directories(
+  day_1_calibration_tool
+  PRIVATE src
+)
 target_link_libraries(
   day_1_calibration_tool
-  day_1_utils
+  day_1_utils 
+  common_utils
+)
+
+add_library(
+  day_2_utils
+  src/day_2/utils.cpp
+)
+add_library(
+  day_2_cubes_set
+  src/day_2/cubes_set.cpp
+)
+add_library(
+  day_2_game
+  src/day_2/game.cpp
+)
+add_library(
+  day_2_game_helper
+  src/day_2/game_helper.cpp
+)
+target_include_directories(
+  day_2_game_helper
+  PRIVATE src
+)
+target_link_libraries(
+  day_2_cubes_set
+  day_2_utils
+)
+target_link_libraries(
+  day_2_game
+  day_2_utils
+)
+target_link_libraries(
+  day_2_game_helper
+  day_2_cubes_set
+  day_2_game
+  common_utils
 )
 
 # Add executables
@@ -38,6 +83,16 @@ add_executable(
 target_link_libraries(
   day_1
   day_1_calibration_tool
+)
+
+add_executable(
+  day_2
+  src/day_2/day_2.cpp
+)
+target_link_libraries(
+  day_2
+  day_2_game_helper
+  day_2_cubes_set
 )
 
 # Add test files
@@ -52,6 +107,22 @@ target_include_directories(
 target_link_libraries(
   day_1_tests
   day_1_calibration_tool
+  GTest::gtest_main
+)
+
+add_executable(
+  day_2_tests
+  tests/day_2_tests.cpp
+)
+target_include_directories(
+  day_2_tests
+  PRIVATE src
+)
+target_link_libraries(
+  day_2_tests
+  day_2_cubes_set
+  day_2_game
+  day_2_game_helper
   GTest::gtest_main
 )
 
