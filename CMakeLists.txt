@@ -75,6 +75,19 @@ target_link_libraries(
   common_utils
 )
 
+add_library(
+  day_3_engine_schematic
+  src/day_3/engine_schematic.cpp
+)
+add_library(
+  day_3_engine_checker
+  src/day_3/engine_checker.cpp
+)
+target_link_libraries(
+  day_3_engine_checker
+  day_3_engine_schematic
+)
+
 # Add executables
 add_executable(
   day_1
@@ -93,6 +106,21 @@ target_link_libraries(
   day_2
   day_2_game_helper
   day_2_cubes_set
+)
+
+add_executable(
+  day_3
+  src/day_3/day_3.cpp
+)
+target_include_directories(
+  day_3
+  PRIVATE src
+)
+target_link_libraries(
+  day_3
+  day_3_engine_checker
+  day_3_engine_schematic
+  common_utils
 )
 
 # Add test files
@@ -123,6 +151,21 @@ target_link_libraries(
   day_2_cubes_set
   day_2_game
   day_2_game_helper
+  GTest::gtest_main
+)
+
+add_executable(
+  day_3_tests
+  tests/day_3_tests.cpp
+)
+target_include_directories(
+  day_3_tests
+  PRIVATE src
+)
+target_link_libraries(
+  day_3_tests
+  day_3_engine_checker
+  day_3_engine_schematic
   GTest::gtest_main
 )
 
