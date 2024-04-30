@@ -41,10 +41,6 @@ target_link_libraries(
 )
 
 add_library(
-  day_2_utils
-  src/day_2/utils.cpp
-)
-add_library(
   day_2_cubes_set
   src/day_2/cubes_set.cpp
 )
@@ -57,16 +53,24 @@ add_library(
   src/day_2/game_helper.cpp
 )
 target_include_directories(
+  day_2_cubes_set
+  PRIVATE src
+)
+target_include_directories(
+  day_2_game
+  PRIVATE src
+)
+target_include_directories(
   day_2_game_helper
   PRIVATE src
 )
 target_link_libraries(
   day_2_cubes_set
-  day_2_utils
+  common_utils
 )
 target_link_libraries(
   day_2_game
-  day_2_utils
+  common_utils
 )
 target_link_libraries(
   day_2_game_helper
@@ -86,6 +90,35 @@ add_library(
 target_link_libraries(
   day_3_engine_checker
   day_3_engine_schematic
+)
+
+add_library(
+  day_4_scratch_card
+  src/day_4/scratch_card.cpp
+)
+add_library(
+  day_4_prize_checker
+  src/day_4/prize_checker.cpp
+)
+add_library(
+  day_4_utils
+  src/day_4/utils.cpp
+)
+target_include_directories(
+  day_4_scratch_card
+  PRIVATE src
+)
+target_link_libraries(
+  day_4_scratch_card
+  common_utils
+)
+target_link_libraries(
+  day_4_prize_checker
+  day_4_scratch_card
+)
+target_link_libraries(
+  day_4_utils
+  day_4_scratch_card
 )
 
 # Add executables
@@ -120,6 +153,22 @@ target_link_libraries(
   day_3
   day_3_engine_checker
   day_3_engine_schematic
+  common_utils
+)
+
+add_executable(
+  day_4
+  src/day_4/day_4.cpp
+)
+target_include_directories(
+  day_4
+  PRIVATE src
+)
+target_link_libraries(
+  day_4
+  day_4_prize_checker
+  day_4_scratch_card
+  day_4_utils
   common_utils
 )
 
@@ -166,6 +215,22 @@ target_link_libraries(
   day_3_tests
   day_3_engine_checker
   day_3_engine_schematic
+  GTest::gtest_main
+)
+
+add_executable(
+  day_4_tests
+  tests/day_4_tests.cpp
+)
+target_include_directories(
+  day_4_tests
+  PRIVATE src
+)
+target_link_libraries(
+  day_4_tests
+  day_4_scratch_card
+  day_4_prize_checker
+  day_4_utils
   GTest::gtest_main
 )
 

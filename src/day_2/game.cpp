@@ -1,6 +1,7 @@
-#include "game.hpp"
 #include <iostream>
-#include "utils.hpp"
+
+#include "common/utils.hpp"
+#include "game.hpp"
 
 namespace advent_of_code_2023 {
 namespace day_2 {
@@ -10,8 +11,8 @@ Game::Game(const std::string& game_data)
     : id_{parseGameId(game_data)}, data_{parseCubesSets(game_data)} {}
 
 uint8_t Game::parseGameId(const std::string& game_data) {
-  std::string game_substring = utils::splitString(game_data, ':')[0];
-  std::string id_substring = utils::splitString(game_substring, ' ')[1];
+  std::string game_substring = common::utils::splitString(game_data, ":")[0];
+  std::string id_substring = common::utils::splitString(game_substring, " ")[1];
 
   // Try to parse game_id as a number. Default to 0 if it fails.
   try {
@@ -24,9 +25,10 @@ uint8_t Game::parseGameId(const std::string& game_data) {
 
 std::vector<cubes_set::CubesSet> Game::parseCubesSets(
     const std::string& game_data) {
-  std::string cube_sets_substring = utils::splitString(game_data, ':')[1];
+  std::string cube_sets_substring =
+      common::utils::splitString(game_data, ":")[1];
   std::vector<std::string> raw_cubes_sets =
-      utils::splitString(cube_sets_substring, ';');
+      common::utils::splitString(cube_sets_substring, ";");
 
   std::vector<cubes_set::CubesSet> cubes_sets;
   for (auto& cubes_set : raw_cubes_sets) {

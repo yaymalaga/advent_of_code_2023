@@ -19,6 +19,24 @@ std::vector<std::string> readInput(const std::string& file_path) {
   return data;
 }
 
+std::vector<std::string> splitString(const std::string& str,
+                                     const std::string& delimiter) {
+  std::vector<std::string> substrings;
+  size_t start = 0;
+  size_t pos = str.find(delimiter, start);
+
+  while (pos != std::string::npos) {
+    substrings.push_back(str.substr(start, pos - start));
+    start = pos + delimiter.length();
+    pos = str.find(delimiter, start);
+  }
+
+  // Add the last token (after the last delimiter)
+  substrings.push_back(str.substr(start));
+
+  return substrings;
+}
+
 }  // namespace utils
 }  // namespace common
 }  // namespace advent_of_code_2023

@@ -1,9 +1,9 @@
+#include <iostream>
 #include <string>
 #include <vector>
 
-#include <iostream>
+#include "common/utils.hpp"
 #include "cubes_set.hpp"
-#include "utils.hpp"
 
 namespace advent_of_code_2023 {
 namespace day_2 {
@@ -27,7 +27,7 @@ std::tuple<uint8_t, uint8_t, uint8_t> CubesSet::parseInput(
   uint8_t blue_cubes = 0;
 
   // Cubes are separated by a comma
-  std::vector<std::string> data = utils::splitString(cubes_data, ',');
+  std::vector<std::string> data = common::utils::splitString(cubes_data, ",");
 
   if (data.size() > 3) {
     std::cout << "Invalid size? -> " << cubes_data << std::endl;
@@ -40,7 +40,7 @@ std::tuple<uint8_t, uint8_t, uint8_t> CubesSet::parseInput(
     };
 
     // Item should be a number and a color separated by a whitespace
-    std::vector<std::string> data = utils::splitString(item, ' ');
+    std::vector<std::string> data = common::utils::splitString(item, " ");
 
     if (data.size() != 2) {
       std::cout << "Invalid item size -> " << item << std::endl;

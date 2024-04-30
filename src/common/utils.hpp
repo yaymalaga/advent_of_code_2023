@@ -16,6 +16,15 @@ namespace utils {
   */
 std::vector<std::string> readInput(const std::string& file_path);
 
+/*
+@brief Splits a string by a delimiter, which can appear multiple times
+@param str The string to split
+@param delimiter The delimiter
+@return A vector of strings
+*/
+std::vector<std::string> splitString(const std::string& str,
+                                     const std::string& delimiter);
+
 }  // namespace utils
 }  // namespace common
 }  // namespace advent_of_code_2023
