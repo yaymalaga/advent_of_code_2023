@@ -3,6 +3,7 @@ project(advent_of_code_2023)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_compile_options(-Wall -Wextra -Wpedantic)
 
@@ -36,7 +37,7 @@ target_include_directories(
 )
 target_link_libraries(
   day_1_calibration_tool
-  day_1_utils 
+  day_1_utils
   common_utils
 )
 
