@@ -4,7 +4,7 @@
 #include "game_helper.hpp"
 
 int main() {
-  const std::string data_path = "data/day_2.txt";
+  const std::filesystem::path data_path = "data/day_2.txt";
 
   // Part 1
   auto game_helper =

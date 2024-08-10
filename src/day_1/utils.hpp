@@ -3,7 +3,6 @@
 #include <cstdint>
 #include <string>
 #include <utility>
-#include <vector>
 
 namespace advent_of_code_2023 {
 namespace day_1 {

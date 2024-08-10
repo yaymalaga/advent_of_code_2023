@@ -8,7 +8,7 @@ namespace game_helper {
 GameHelper::GameHelper(const std::vector<std::string>& data)
     : games_data_(parseGamesData(data)) {}
 
-GameHelper::GameHelper(const std::string& data_path)
+GameHelper::GameHelper(const std::filesystem::path& data_path)
     : GameHelper(common::utils::readInput(data_path)) {}
 
 int64_t GameHelper::getPossibleGamesValue(

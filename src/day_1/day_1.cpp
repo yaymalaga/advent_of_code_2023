@@ -3,7 +3,7 @@
 #include "calibration_tool.hpp"
 
 int main() {
-  const std::string data_path = "data/day_1.txt";
+  const std::filesystem::path data_path = "data/day_1.txt";
 
   // Part 1
   auto calibration_tool =

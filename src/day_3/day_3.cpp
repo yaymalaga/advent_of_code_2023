@@ -5,7 +5,7 @@
 #include "engine_schematic.hpp"
 
 int main() {
-  const std::string data_path = "data/day_3.txt";
+  const std::filesystem::path data_path = "data/day_3.txt";
   const std::vector<std::string> input_data =
       advent_of_code_2023::common::utils::readInput(data_path);
 

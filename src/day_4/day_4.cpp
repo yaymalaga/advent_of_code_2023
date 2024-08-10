@@ -2,11 +2,10 @@
 
 #include "common/utils.hpp"
 #include "prize_checker.hpp"
-#include "scratch_card.hpp"
 #include "utils.hpp"
 
 int main() {
-  const std::string data_path = "data/day_4.txt";
+  const std::filesystem::path data_path = "data/day_4.txt";
   const std::vector<std::string> input_data =
       advent_of_code_2023::common::utils::readInput(data_path);
 

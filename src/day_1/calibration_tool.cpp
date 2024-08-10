@@ -1,7 +1,5 @@
-#include <fstream>
 #include <iostream>
 #include <optional>
-#include <regex>
 
 #include "calibration_tool.hpp"
 #include "common/utils.hpp"
@@ -14,7 +12,7 @@ namespace calibration_tool {
 CalibrationTool::CalibrationTool(const std::vector<std::string>& data)
     : data_(std::move(data)) {}
 
-CalibrationTool::CalibrationTool(const std::string& data_path)
+CalibrationTool::CalibrationTool(const std::filesystem::path& data_path)
     : CalibrationTool(common::utils::readInput(data_path)) {}
 
 int64_t CalibrationTool::getCalibrationValue(const std::string& item) {

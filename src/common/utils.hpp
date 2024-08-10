@@ -1,8 +1,7 @@
 #pragma once
 
-#include <cstdint>
+#include <filesystem>
 #include <string>
-#include <utility>
 #include <vector>
 
 namespace advent_of_code_2023 {
@@ -14,7 +13,7 @@ namespace utils {
   @param file_path The path to the input file
   @return A vector of strings
   */
-std::vector<std::string> readInput(const std::string& file_path);
+std::vector<std::string> readInput(const std::filesystem::path& file_path);
 
 /*
 @brief Splits a string by a delimiter, which can appear multiple times

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <filesystem>
 #include <string>
 #include <vector>
 
@@ -20,7 +21,7 @@ class CalibrationTool {
   @brief Constructor
   @param data_path The path to the input file
   */
-  CalibrationTool(const std::string& data_path);
+  CalibrationTool(const std::filesystem::path& data_path);
 
   ~CalibrationTool() = default;
 

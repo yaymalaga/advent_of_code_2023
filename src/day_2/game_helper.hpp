@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <filesystem>
 #include <string>
 #include <vector>
 
@@ -23,7 +24,7 @@ class GameHelper {
   @brief Constructor
   @param data_path The path to the input file with the game raw data
   */
-  GameHelper(const std::string& data_path);
+  GameHelper(const std::filesystem::path& data_path);
 
   ~GameHelper() = default;
 
