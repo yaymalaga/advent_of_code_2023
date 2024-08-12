@@ -4,6 +4,7 @@ project(advent_of_code_2023)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+#set(CMAKE_BUILD_TYPE RelWithDebInfo)
 
 add_compile_options(-Wall -Wextra -Wpedantic)
 
@@ -122,6 +123,23 @@ target_link_libraries(
   day_4_scratch_card
 )
 
+add_library(
+  day_5_map
+  src/day_5/map.cpp
+)
+add_library(
+  day_5_almanac
+  src/day_5/almanac.cpp
+)
+target_include_directories(
+  day_5_map
+  PRIVATE src
+)
+target_include_directories(
+  day_5_almanac
+  PRIVATE src
+)
+
 # Add executables
 add_executable(
   day_1
@@ -170,6 +188,21 @@ target_link_libraries(
   day_4_prize_checker
   day_4_scratch_card
   day_4_utils
+  common_utils
+)
+
+add_executable(
+  day_5
+  src/day_5/day_5.cpp
+)
+target_include_directories(
+  day_5
+  PRIVATE src
+)
+target_link_libraries(
+  day_5
+  day_5_almanac
+  day_5_map
   common_utils
 )
 
@@ -232,6 +265,23 @@ target_link_libraries(
   day_4_scratch_card
   day_4_prize_checker
   day_4_utils
+  GTest::gtest_main
+)
+
+## Day 5
+add_executable(
+  day_5_tests
+  tests/day_5_tests.cpp
+)
+target_include_directories(
+  day_5_tests
+  PRIVATE src
+)
+target_link_libraries(
+  day_5_tests
+  day_5_map
+  day_5_almanac
+  common_utils
   GTest::gtest_main
 )
 
