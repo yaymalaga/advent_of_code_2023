@@ -5,23 +5,26 @@
 #include <string>
 #include <vector>
 
-namespace advent_of_code_2023 {
-namespace day_1 {
-namespace calibration_tool {
+namespace advent_of_code_2023::day_1::calibration_tool {
 
 class CalibrationTool {
  public:
+  CalibrationTool(const CalibrationTool&) = default;
+  CalibrationTool(CalibrationTool&&) = delete;
+  CalibrationTool& operator=(const CalibrationTool&) = default;
+  CalibrationTool& operator=(CalibrationTool&&) = delete;
+
   /*
-  @brief Constructor
-  @param data The list of strings to process
-  */
-  CalibrationTool(const std::vector<std::string>& data);
+    @brief Constructor
+    @param data The list of strings to process
+    */
+  explicit CalibrationTool(const std::vector<std::string>& data);
 
   /*
   @brief Constructor
   @param data_path The path to the input file
   */
-  CalibrationTool(const std::filesystem::path& data_path);
+  explicit CalibrationTool(const std::filesystem::path& data_path);
 
   ~CalibrationTool() = default;
 
@@ -51,6 +54,4 @@ class CalibrationTool {
   static int64_t getCalibrationValue(const std::string& item);
 };
 
-}  // namespace calibration_tool
-}  // namespace day_1
-}  // namespace advent_of_code_2023
+}  // namespace advent_of_code_2023::day_1::calibration_tool

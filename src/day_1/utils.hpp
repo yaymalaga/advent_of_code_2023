@@ -2,11 +2,8 @@
 
 #include <cstdint>
 #include <string>
-#include <utility>
 
-namespace advent_of_code_2023 {
-namespace day_1 {
-namespace utils {
+namespace advent_of_code_2023::day_1::utils {
 
 /*
 @brief Simple util to convert a character to an integer
@@ -28,13 +25,4 @@ char intToChar(int64_t digit);
 */
 void replaceSpelledNumbers(std::string& item);
 
-/*
-@brief The list of written numbers and their corresponding digits
-*/
-constexpr std::pair<const char*, uint64_t> SPELLED_NUMBERS[] = {
-    {"one", 1}, {"two", 2},   {"three", 3}, {"four", 4}, {"five", 5},
-    {"six", 6}, {"seven", 7}, {"eight", 8}, {"nine", 9}};
-
-}  // namespace utils
-}  // namespace day_1
-}  // namespace advent_of_code_2023
+}  // namespace advent_of_code_2023::day_1::utils

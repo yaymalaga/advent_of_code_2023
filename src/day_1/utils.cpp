@@ -1,10 +1,9 @@
+#include <array>
 #include <vector>
 
 #include "utils.hpp"
 
-namespace advent_of_code_2023 {
-namespace day_1 {
-namespace utils {
+namespace advent_of_code_2023::day_1::utils {
 
 int64_t charToInt(char character) {
   return static_cast<int64_t>(character - '0');
@@ -22,11 +21,23 @@ void replaceSpelledNumbers(std::string& item) {
   // key is substring first letter pos and the value the number it represents
   std::vector<std::pair<size_t, int8_t>> replacements;
 
-  for (const auto& [written_number, number] : SPELLED_NUMBERS) {
+  // List of written numbers and their corresponding digits
+  static const std::array<std::pair<std::string, uint64_t>, 9> spelled_numbers =
+      {{{"one", 1},
+        {"two", 2},
+        {"three", 3},
+        {"four", 4},
+        {"five", 5},
+        {"six", 6},
+        {"seven", 7},
+        {"eight", 8},
+        {"nine", 9}}};
+
+  for (const auto& [written_number, number] : spelled_numbers) {
     auto pos = item.find(written_number);
 
     while (pos != std::string::npos) {
-      replacements.push_back({pos, number});
+      replacements.emplace_back(pos, number);
       pos = item.find(written_number, pos + 1);
     }
   }
@@ -38,6 +49,4 @@ void replaceSpelledNumbers(std::string& item) {
   }
 }
 
-}  // namespace utils
-}  // namespace day_1
-}  // namespace advent_of_code_2023
+}  // namespace advent_of_code_2023::day_1::utils

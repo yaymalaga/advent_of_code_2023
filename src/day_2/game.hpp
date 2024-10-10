@@ -11,12 +11,16 @@ namespace game {
 
 class Game {
  public:
+  Game(const Game&) = default;
+  Game(Game&&) = delete;
+  Game& operator=(const Game&) = default;
+  Game& operator=(Game&&) = delete;
   /*
-  @brief Constructor
-  @param game_data The game data as a raw string
-  @details Example input "Game 1: 3 blue, 4 red; 1 red; 2 green"
-  */
-  Game(const std::string& game_data);
+    @brief Constructor
+    @param game_data The game data as a raw string
+    @details Example input "Game 1: 3 blue, 4 red; 1 red; 2 green"
+    */
+  explicit Game(const std::string& game_data);
 
   ~Game() = default;
 

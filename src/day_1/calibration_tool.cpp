@@ -5,12 +5,10 @@
 #include "common/utils.hpp"
 #include "utils.hpp"
 
-namespace advent_of_code_2023 {
-namespace day_1 {
-namespace calibration_tool {
+namespace advent_of_code_2023::day_1::calibration_tool {
 
 CalibrationTool::CalibrationTool(const std::vector<std::string>& data)
-    : data_(std::move(data)) {}
+    : data_(data) {}
 
 CalibrationTool::CalibrationTool(const std::filesystem::path& data_path)
     : CalibrationTool(common::utils::readInput(data_path)) {}
@@ -21,7 +19,7 @@ int64_t CalibrationTool::getCalibrationValue(const std::string& item) {
 
   for (auto character : item) {
     // We are only interested in processing numbers
-    if (!std::isdigit(character)) {
+    if (std::isdigit(character) == 0) {
       continue;
     }
 
@@ -47,14 +45,15 @@ int64_t CalibrationTool::getCalibrationValue(const std::string& item) {
 
   // The result is the two numbers together, thus to keep it simple we can
   // multiply the first by 10 and add the second one
-  return utils::charToInt(first.value()) * 10 + utils::charToInt(last.value());
+  const auto ten = 10;
+  return utils::charToInt(first.value()) * ten + utils::charToInt(last.value());
 }
 
 int64_t CalibrationTool::getTotalCalibrationValue() const {
   // Just iterates through every item and sums up the values
   int64_t total = 0;
 
-  for (auto& item : data_) {
+  for (const auto& item : data_) {
     total += getCalibrationValue(item);
   }
 
@@ -67,6 +66,4 @@ void CalibrationTool::replaceSpelledNumbers() {
   }
 }
 
-}  // namespace calibration_tool
-}  // namespace day_1
-}  // namespace advent_of_code_2023
+}  // namespace advent_of_code_2023::day_1::calibration_tool

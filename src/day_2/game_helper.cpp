@@ -40,14 +40,14 @@ std::vector<game::Game> GameHelper::parseGamesData(
   std::vector<game::Game> games;
 
   for (const auto& item : games_data) {
-    games.push_back(game::Game(item));
+    games.emplace_back(item);
   }
 
   return games;
 }
 
 bool GameHelper::isGamePossible(const game::Game& game,
-                                const cubes_set::CubesSet& bag_content) const {
+                                const cubes_set::CubesSet& bag_content) {
   for (const auto& cubes_set : game.getData()) {
     if (cubes_set.getBlueCubes() > bag_content.getBlueCubes() ||
         cubes_set.getRedCubes() > bag_content.getRedCubes() ||
@@ -58,8 +58,8 @@ bool GameHelper::isGamePossible(const game::Game& game,
   return true;
 }
 
-cubes_set::CubesSet GameHelper::calculateBagContent(
-    const game::Game& game) const {
+static cubes_set::CubesSet GameHelper::calculateBagContent(
+    const game::Game& game) {
   uint8_t green_cubes = 0;
   uint8_t red_cubes = 0;
   uint8_t blue_cubes = 0;
@@ -73,7 +73,8 @@ cubes_set::CubesSet GameHelper::calculateBagContent(
   return cubes_set::CubesSet(green_cubes, red_cubes, blue_cubes);
 }
 
-uint64_t GameHelper::getCubesPower(const cubes_set::CubesSet& cubes_set) const {
+static uint64_t GameHelper::getCubesPower(
+    const cubes_set::CubesSet& cubes_set) {
   return cubes_set.getGreenCubes() * cubes_set.getRedCubes() *
          cubes_set.getBlueCubes();
 }

@@ -4,9 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace advent_of_code_2023 {
-namespace common {
-namespace utils {
+namespace advent_of_code_2023::common::utils {
 
 /*
   @brief Read the input file and returns a vector of strings
@@ -24,6 +22,4 @@ std::vector<std::string> readInput(const std::filesystem::path& file_path);
 std::vector<std::string> splitString(const std::string& str,
                                      const std::string& delimiter);
 
-}  // namespace utils
-}  // namespace common
-}  // namespace advent_of_code_2023
+}  // namespace advent_of_code_2023::common::utils

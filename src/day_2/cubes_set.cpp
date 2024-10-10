@@ -5,32 +5,22 @@
 #include "common/utils.hpp"
 #include "cubes_set.hpp"
 
-namespace advent_of_code_2023 {
-namespace day_2 {
-namespace cubes_set {
+namespace advent_of_code_2023::day_2::cubes_set {
 
-CubesSet::CubesSet(const std::uint8_t green_cubes,
-                   const std::uint8_t red_cubes,
-                   const std::uint8_t blue_cubes)
-    : green_cubes_(green_cubes),
-      red_cubes_(red_cubes),
-      blue_cubes_(blue_cubes) {}
+CubesSet::CubesSet(const CubesData& cubes_data) : cubes_data_(cubes_data) {}
 
-CubesSet::CubesSet(const std::string& cubes_data) {
-  std::tie(green_cubes_, red_cubes_, blue_cubes_) = parseInput(cubes_data);
-}
+CubesSet::CubesSet(const std::string& cubes_raw_data)
+    : cubes_data_(parseInput(cubes_raw_data)) {}
 
-std::tuple<uint8_t, uint8_t, uint8_t> CubesSet::parseInput(
-    const std::string& cubes_data) const {
-  uint8_t green_cubes = 0;
-  uint8_t red_cubes = 0;
-  uint8_t blue_cubes = 0;
+CubesSet::CubesData CubesSet::parseInput(const std::string& cubes_raw_data) {
+  CubesData cubes_data{};
 
   // Cubes are separated by a comma
-  std::vector<std::string> data = common::utils::splitString(cubes_data, ",");
+  std::vector<std::string> data =
+      common::utils::splitString(cubes_raw_data, ",");
 
   if (data.size() > 3) {
-    std::cout << "Invalid size? -> " << cubes_data << std::endl;
+    std::cout << "Invalid size? -> " << cubes_raw_data << std::endl;
   }
 
   for (auto& item : data) {
@@ -58,19 +48,17 @@ std::tuple<uint8_t, uint8_t, uint8_t> CubesSet::parseInput(
 
     // Add the cubes to the corresponding color
     if (data[1] == "green") {
-      green_cubes = quantity;
+      cubes_data.green_number = quantity;
     } else if (data[1] == "red") {
-      red_cubes = quantity;
+      cubes_data.red_number = quantity;
     } else if (data[1] == "blue") {
-      blue_cubes = quantity;
+      cubes_data.blue_number = quantity;
     } else {
       std::cout << "Invalid color -> " << item << std::endl;
     }
   }
 
-  return std::tuple{green_cubes, red_cubes, blue_cubes};
+  return cubes_data;
 }
 
-}  // namespace cubes_set
-}  // namespace day_2
-}  // namespace advent_of_code_2023
+}  // namespace advent_of_code_2023::day_2::cubes_set
